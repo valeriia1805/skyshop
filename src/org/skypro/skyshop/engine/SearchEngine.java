@@ -30,11 +30,15 @@ public class SearchEngine {
 
     public void add(Searchable item) {
         if (size == items.length) {
-            Searchable[] newItems = new Searchable[items.length * 2];
-            System.arraycopy(items, 0, newItems, 0, size);
-            items = newItems;
+            resize(items.length * 2);
         }
         items[size] = item;
         size++;
+    }
+
+    private void resize(int newCapacity) {
+        Searchable[] newItems = new Searchable[newCapacity];
+        System.arraycopy(items, 0, newItems, 0, size);
+        items = newItems;
     }
 }
