@@ -1,10 +1,14 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.domain.Searchable;
+import org.skypro.skyshop.engine.SearchEngine;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.SimpleProduct;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
@@ -16,35 +20,22 @@ public class App {
         Product juice = new SimpleProduct("Сок", 120);
         Product chocolate = new SimpleProduct("Шоколад", 150);
 
-        // Создаем корзину
-        ProductBasket basket = new ProductBasket();
+        SearchEngine searchEngine = new SearchEngine(5);
+        searchEngine.add(apple);
+        searchEngine.add(bread);
+        searchEngine.add(milk);
+        searchEngine.add(cheese);
+        searchEngine.add(juice);
+        searchEngine.add(chocolate);
 
-        // Добавление продуктов в корзину
-        basket.addProduct(apple);
-        basket.addProduct(bread);
-        basket.addProduct(milk);
-        basket.addProduct(cheese);
-        basket.addProduct(juice);
+        Article article1 = new Article("Золотое яблоко", "text1");
+        Article article2 = new Article("title2", "text2");
+        Article article3 = new Article("title3", "Это текст содержит слово яблоко");
+        searchEngine.add(article1);
+        searchEngine.add(article2);
+        searchEngine.add(article3);
 
-        // Попытка добавить продукт в переполненную корзину
-        basket.addProduct(chocolate);
-
-        // Печать содержимого корзины
-        basket.printBasket();
-
-        // Общая стоимость
-        System.out.println("Общая стоимость корзины: " + basket.getTotalPrice());
-
-        // Поиск товара в корзине
-        System.out.println("Есть ли молоко в корзине? " + basket.containsProduct("Молоко"));
-        System.out.println("Есть ли вода в корзине? " + basket.containsProduct("Вода"));
-
-        // Очистка корзины
-        basket.clearBasket();
-
-        // Проверка после очистки
-        basket.printBasket();
-        System.out.println("Общая стоимость корзины: " + basket.getTotalPrice());
-        System.out.println("Есть ли хлеб в корзине? " + basket.containsProduct("Хлеб"));
+        Searchable[] searchResults = searchEngine.search("яблоко");
+        System.out.println(Arrays.toString(searchResults));
     }
 }
