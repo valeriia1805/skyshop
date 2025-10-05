@@ -8,6 +8,7 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class App {
         searchEngine.add(article1);
         searchEngine.add(article2);
 
-        List<Searchable> matches = searchEngine.search("pineapple");
+        Map<String, Searchable> matches = searchEngine.search("pineapple");
         System.out.println(matches);
     }
 }
