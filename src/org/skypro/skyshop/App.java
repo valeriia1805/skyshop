@@ -8,7 +8,7 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class App {
     public static void main(String[] args) {
@@ -41,10 +41,12 @@ public class App {
         searchEngine.add(pineapple2);
         Article article1 = new Article("About orange", "The best food is orange");
         Article article2 = new Article("About pineapple", "The best food is pineapple");
+        Article article3 = new Article("Some good article", "This article is about pineapple");
         searchEngine.add(article1);
         searchEngine.add(article2);
+        searchEngine.add(article3);
 
-        Map<String, Searchable> matches = searchEngine.search("pineapple");
+        Set<Searchable> matches = searchEngine.search("pineapple");
         System.out.println(matches);
     }
 }
