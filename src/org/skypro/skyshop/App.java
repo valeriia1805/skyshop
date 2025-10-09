@@ -4,6 +4,7 @@ import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.domain.Searchable;
 import org.skypro.skyshop.engine.SearchEngine;
+import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
@@ -15,15 +16,13 @@ public class App {
         Product apple = new SimpleProduct("apple", 100);
         Product orange = new SimpleProduct("orange", 200);
         Product pineapple = new SimpleProduct("pineapple", 300);
-        Product pineapple2 = new SimpleProduct("pineapple", 300);
+        Product pineapple2 = new DiscountedProduct("pineapple", 300, 30);
 
         ProductBasket basket = new ProductBasket();
         basket.addProduct(apple);
         basket.addProduct(orange);
         basket.addProduct(pineapple);
         basket.addProduct(pineapple2);
-
-        System.out.println(basket.removeProduct("pineapple"));
 
         basket.printBasket();
 
